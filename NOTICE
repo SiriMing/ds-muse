@@ -1,0 +1,27 @@
+DS Muse
+Copyright (c) 2026 DS Muse contributors
+
+This product is an independent implementation for DeepSeek Harness. It was
+designed with reference to the publicly documented design of nanoMuse
+(https://github.com/nano-muse/nanoMuse, GPL-3.0-or-later), in particular:
+
+  docs/design.md     — what a personal agent is: name, face, memory, reach
+  docs/sentinel.md   — risk levels, decision order, capabilities, taint,
+                       approval scopes, audit
+  docs/memory.md     — memory as Markdown files a person can read and edit
+
+No nanoMuse source code was copied into this repository. The concepts above
+were reimplemented against DeepSeek Harness' own plugin APIs (defineTool,
+ctx.systemPrompt, tools/pre-execute, ctx.approval, ctx.slots). DS Muse is
+therefore licensed MIT and not as a derivative work of nanoMuse's GPL code.
+
+If you believe any file here is derived from GPL-licensed source, please open
+an issue so it can be removed or the licence corrected.
+
+The agent preset in presets/dsmuse.patch.yml is adapted from the plugin list in
+`@deepseek-ai/dsh-web-app/presets/standard.patch.yml` (MIT, DeepSeek Harness).
+It is configuration, reproduced with attribution so Muse sessions have the same
+capabilities as a standard session.
+
+DeepSeek Harness and the @deepseek-ai/* packages are MIT licensed; see
+THIRD_PARTY_NOTICES.md.

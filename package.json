@@ -1,0 +1,100 @@
+{
+  "name": "ds-muse",
+  "version": "0.2.0",
+  "description": "DS Muse — a Muse for DeepSeek Harness, with named Bots that keep their own chat, persona and memory.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20",
+    "dsh": ">=0.2.1 <0.3.0"
+  },
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./sentinel": "./lib/sentinel.js",
+    "./persona": "./lib/persona.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json",
+    "./bots": "./lib/bots.js"
+  },
+  "files": [
+    "lib",
+    "presets",
+    "cordis.patch.yml",
+    "docs",
+    "README.md",
+    "README.zh.md",
+    "LICENSE",
+    "NOTICE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "dsh-bundle",
+    "agent",
+    "personal-assistant",
+    "sentinel",
+    "memory"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": [
+        "./cordis.patch.yml",
+        "./presets/dsmuse.patch.yml"
+      ]
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-input-trigger",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "prepare": "node build.mjs"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.1.0",
+    "@deepseek-ai/dsh-home-paths": "^0.2.2-rc.4",
+    "@deepseek-ai/dsh-host-webserver": "^0.2.2-rc.4",
+    "@deepseek-ai/dsh-system-prompt": "^0.2.2-rc.4",
+    "@deepseek-ai/dsh-tools": "^0.2.2-rc.4",
+    "@deepseek-ai/dsh-user-approval": "^0.2.2-rc.4"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "4.1.0",
+    "@deepseek-ai/dsh-home-paths": "0.2.2-rc.4",
+    "@deepseek-ai/dsh-host-webserver": "0.2.2-rc.4",
+    "@deepseek-ai/dsh-system-prompt": "0.2.2-rc.4",
+    "@deepseek-ai/dsh-tools": "0.2.2-rc.4",
+    "@deepseek-ai/dsh-user-approval": "0.2.2-rc.4",
+    "@deepseek-ai/dsh-client-ui-conversation": "0.2.2-rc.4",
+    "@deepseek-ai/dsh-client-ui-settings": "0.2.2-rc.4",
+    "@deepseek-ai/dsh-client-ui-slots": "0.2.2-rc.4",
+    "@deepseek-ai/dsh-web-app": "0.2.2-rc.4",
+    "@types/node": "^22.10.0",
+    "@types/react": "^18.3.1",
+    "esbuild": "^0.28.2",
+    "react": "^18.3.1",
+    "typescript": "^5.9.0",
+    "@deepseek-ai/dsh-client-ui-renderer": "0.2.2-rc.4"
+  },
+  "author": "SiriMing",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SiriMing/ds-muse.git"
+  },
+  "homepage": "https://github.com/SiriMing/ds-muse#readme",
+  "bugs": {
+    "url": "https://github.com/SiriMing/ds-muse/issues"
+  }
+}
