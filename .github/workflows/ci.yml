@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm install --ignore-scripts
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - name: Client bundle envelope
+        run: |
+          node -e "const fs=require('fs');const s=fs.readFileSync('lib/client.js','utf8');if(!s.includes('__ModuleLoader__')||!s.includes('id: \"ds-muse\"'))process.exit(1)"
+      - name: Package dry run
+        run: npm pack --dry-run

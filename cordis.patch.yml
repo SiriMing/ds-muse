@@ -1,0 +1,22 @@
+# DS Muse bundle layer: the rows every profile gets when DS Muse is installed.
+#
+# Two rows, on purpose:
+#
+#   dsmuse           the Muse's own data — name/face, the three memory files, the
+#                    policy, grants and audit — plus the loopback API the Web
+#                    settings page talks to. Its `dsh.client` bundle attaches here.
+#   dsmuse-sentinel  the gate in front of every tool call. Global rather than a
+#                    preset row: a Muse delegates, and a sub-agent's shell call is
+#                    as real as its own.
+#
+# The Muse's voice, memory context and muse_* tools live in the `dsmuse` agent
+# preset (presets/dsmuse.patch.yml), so a standard or plan-mode session is not
+# given them.
+- insert:
+    - id: dsmuse
+      name: ds-muse
+    - id: dsmuse-sentinel
+      name: ds-muse/sentinel
+      config:
+        # false leaves the harness's own approval policy exclusively in charge.
+        enabled: true

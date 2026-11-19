@@ -1,0 +1,16 @@
+# Optional: make DS Muse the default preset for every new session.
+#
+# NOT applied by default. `dsh.bundle.patch` lists only cordis.patch.yml and
+# presets/dsmuse.patch.yml. Copy this file and add it to that list if you want
+# every new chat to start as the Muse:
+#
+#   "dsh": { "bundle": { "patch": [
+#     "./cordis.patch.yml",
+#     "./presets/dsmuse.patch.yml",
+#     "./presets/default.patch.yml"
+#   ] } }
+#
+# It replaces the registry row's whole `config`, so restate every key it needs.
+- id: agent-preset-registry
+  config:
+    default: dsmuse
